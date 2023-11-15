@@ -1,0 +1,22 @@
+
+body{
+    justify-self: flex-start;
+    flex-grow: 3;
+}
+
+/* Footer Styles */
+footer{
+    justify-self: self-end;
+    margin-top: 10%;
+}
+
+.footer-links {
+    padding-left: 2%;
+    padding-right: 2%;
+    list-style-type: none;
+    margin-top: 2%;
+}
+
+.footer-links a {
+    text-decoration: none;
+}
