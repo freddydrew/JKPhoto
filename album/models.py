@@ -90,28 +90,27 @@ class album(models.Model):
                         updatedFields.append(fieldName) 
                 except Exception as ex:
                     pass
-            kwargs["updated_fields"] = updatedFields
+            kwargs["update_fields"] = updatedFields
         except:
-            if old == None:
-                print("Save comparison has run.")
-                print("Object is new, old == None.")
+            pass
         return super().save(*args,**kwargs)
-
-def albumPostSave(instance, created, *args, **kwargs):
-    if created or kwargs["updated_fields"] != []:
-        instance.setSlug()
-    if "publish" in kwargs["updated_fields"] and instance.publish == True:
-        instance.setSlugPublish()
-    if "publish" in kwargs["updated_fields"] and instance.publish == False:
-        instance.setSlug()
-    instance.setUpdated()
-
-# Connect the post-save signal to the overridden save function
-post_save.connect(albumPostSave,sender=album)
-
+    
 """
 The Simple Image Class that will hold photos in the album.
 """
 class albumImage(models.Model):
     album = models.ForeignKey(album,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='static/album/')
+
+def albumPostSave(instance, created, *args, **kwargs):
+    if created or kwargs["update_fields"] != []:
+        instance.setSlug()
+    if instance.publish == True:
+        instance.setSlugPublish()
+    else:
+        instance.setSlug()
+    instance.setUpdated()
+
+# Connect the post-save signal to the overridden save function
+post_save.connect(albumPostSave,sender=album)
+

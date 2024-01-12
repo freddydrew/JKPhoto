@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<!-- Load CSS -->
+<link rel="stylesheet" href="{% static 'css/stylesAllAlbums.css' %}">
+
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-m-8 col-lg-8">
+            {% if objPage %}
+                {% for obj in objPage %}
+                    <div class="card mb-1">
+                        <div class="card-body">
+                        <p class="card-title">{{ obj.title }}</p>
+                        <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if objPage.has_other_pages %}
+                <div class="btn-group" role="group" aria-label="Item pagination">
+                    {% if objPage.has_previous %}
+                        <a href="?page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
+                    {% endif %}
+
+                    {% for pageNum in objPage.paginator.page_range %}
+                        {% if objPage.number == pageNum %}
+                            <button class="btn btn-outline-secondary active">
+                                <span>{{ pageNum }} <span class="sr-only">(current)</span></span>
+                            </button>
+                        {% else %}
+                            <a href="?page={{ pageNum }}" class="btn btn-outline-secondary">
+                                {{ pageNum }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if objPage.has_next %}
+                        <a href="?page={{ objPage.next_page_number }}" class="btn btn-outline-secondary">&raquo;</a>
+                    {% endif %}
+                </div>
+                    {% endif %}
+                {% else %}
+                    <p>No items found.</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+{%endblock content%}

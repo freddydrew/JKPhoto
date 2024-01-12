@@ -1,0 +1,17 @@
+.container{
+    flex-grow: 3;
+    margin-top: 10%;
+}
+
+.card{
+    height: 25%;
+    width: 25%;
+}
+
+.card img{
+    object-fit: cover;
+    object-position: center;
+    height: 25%;
+    width: 25%;
+    overflow: hidden;
+}

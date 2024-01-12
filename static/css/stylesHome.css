@@ -1,0 +1,11 @@
+.container{
+    flex-grow: 3;
+    margin-top: 10%;
+}
+
+.carousel-inner img{
+    object-fit: cover;
+    object-position: center;
+    height: 50vh;
+    overflow: hidden;
+}
