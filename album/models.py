@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils.formats import date_format
 from django.utils import timezone
+from django.urls import reverse
 from .utils import slugfiy
 
 '''
@@ -56,6 +57,9 @@ class album(models.Model):
         return self.publishDate
     def getSlug(self):
         return self.slug
+    # IMPORTANT: get url for links to render view
+    def getAbsoluteUrl(self):
+        return reverse('album:oneAlbum',kwargs={'slug': self.slug})
     
     # Setters
     def setUpdated(self):
@@ -67,7 +71,8 @@ class album(models.Model):
     # Set slug with publish date
     def setSlugPublish(self):
         ddmmyyyy = date_format(self.publishDate,'d-m-Y')
-        publishSlug = f'{self.slug}-{ddmmyyyy}'
+        titleSlug = slugfiy(self.title)
+        publishSlug = f'{titleSlug}-{ddmmyyyy}'
         album.objects.filter(id=self.id).update(slug=publishSlug)
 
     '''

@@ -1,0 +1,9 @@
+.container{
+    flex-grow: 3;
+    margin-top: 10%;
+}
+
+.oneImage img{
+    border-radius: 20px;
+    width: 100%;
+}

@@ -8,5 +8,5 @@ from .views import (
 app_name = 'album'
 urlpatterns = [
     path('',allAlbumsView,name='allAlbums'),
-    # path('<slug:slug>/',oneAlbumView,name='oneAlbum')
+    path('<slug:slug>/',oneAlbumView,name='oneAlbum')
 ]

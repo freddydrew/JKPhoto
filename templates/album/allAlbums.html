@@ -10,12 +10,15 @@
         <div class="col-12 col-m-8 col-lg-8">
             {% if objPage %}
                 {% for obj in objPage %}
+                <a href="{{obj.getAbsoluteUrl}}">
                     <div class="card mb-1">
                         <div class="card-body">
                         <p class="card-title">{{ obj.title }}</p>
                         <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
                         </div>
                     </div>
+                </a>
+
                 {% endfor %}
 
                 {% if objPage.has_other_pages %}

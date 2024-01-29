@@ -29,6 +29,13 @@ def allAlbumsView(request):
     }
     return render(request,"album/allAlbums.html",context=context)
 
-def oneAlbumView(request):
-    context={}
+def oneAlbumView(request,slug=None):
+
+    # getting the unique slug for the article in question
+    obj = album.objects.get(slug=slug)
+
+    # put the fetched object into dict that is given to page
+    context={
+        'obj': obj
+    }
     return render(request,"album/oneAlbum.html",context=context)

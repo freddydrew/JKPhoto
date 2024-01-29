@@ -4,39 +4,59 @@
 <!-- Load CSS -->
 <link rel="stylesheet" href="{% static 'css/stylesOneAlbum.css' %}">
 
+<!-- Displaying title, publish date -->
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-8">
+            <!-- Display Title -->
+            <h1>{{obj.title}}</h1>
+  
+            <!-- Publish Date -->
+            <p class="articleTitle text-muted">
+                <strong>
+                    {{obj.publishDate|date:"F j, Y"}}
+                </strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- For when there is only one image, just display it -->
+{%if obj.albumimage_set.count == 1%}
+<div class="container oneImage">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-8">
+            <!-- Load image, must be URL, Not sure why -->
+            <img src="{{obj.albumimage_set.all.0.image.url}}" 
+            alt="{{obj.title}} image" class="">
+        </div>
+    </div>
+</div>
+{%endif%}
+
+<!-- If there are multiple images in an object, make a carosel of them -->
+{%if obj.albumimage_set.count > 1%}
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-m-8 col-lg-8">
-
-            
-
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
-                <!-- Inner -->
+                <!-- Carousel of images -->
                 <div class="carousel-inner">
-                   {%for obj in sliderObjList%}
+                   {%for image in obj.albumimage_set.all%}
                        {%if forloop.counter0 == 0%}
-                           <!-- Active item -->
                            <div class="carousel-item active" data-bs-interval="3000">
-                               <!-- <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;"> -->
-                                   <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
-                                   
-                               <!-- </a> -->
+                                 <img src="{{image.image.url}}" class="mx-auto d-block" alt=""/>
                            </div>
-
                        {%else%}
-                           <!-- Item -->
                            <div class="carousel-item" data-bs-interval="3000">
-                               <!-- <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;"> -->
-                                   <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
-                               <!-- </a> -->
+                                <img src="{{image.image.url}}" class="mx-auto d-block" alt=""/>
                            </div>
                        {%endif%}
                    {%endfor%}      
                </div>
-               <!-- Inner -->
 
-               <!-- Carousel Controls, left and right arros -->
+               <!-- Carousel Arrow Controls -->
                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                  <span class="visually-hidden">Previous</span>
@@ -45,9 +65,19 @@
                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
                  <span class="visually-hidden">Next</span>
                </button>
-               <!-- Carousel Controls, left and right arros -->
 
              </div>
+        </div>
+    </div>
+</div>
+{%endif%}
+
+<!-- Displaying content a.k.a. caption for album -->
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-8">  
+            <!-- content -->
+            <p>{{obj.content}}</p>
         </div>
     </div>
 </div>
