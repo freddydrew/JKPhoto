@@ -13,7 +13,7 @@ def allAlbumsView(request):
     page = request.GET.get('page', defaultPage)
     objList = album.objects.filter(publish=True)
 
-    objPerPage = 1
+    objPerPage = 4
     paginator = Paginator(objList, objPerPage)
 
     try:
