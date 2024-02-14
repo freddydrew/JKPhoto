@@ -1,10 +1,62 @@
-{%extends 'base.html'%}
+{%extends "base.html"%}
 {%block content%}
+
 {% load static %}
+
 <!-- Load CSS -->
-<link rel="stylesheet" href="{% static 'css/stylesAllAlbums.css' %}">
+<link rel="stylesheet" href="{% static 'css/stylesSearch.css' %}">
 
+<div class="container">
+    <div class="col-12 mb-0">
+        <h3>Search Results</h3>
+        <hr>
+    </div>
+</div>
 
+{% if objPage.object_list.count == 0 %}
+<!-- Showing no results -->
+<div class="container my-0">
+    <p>
+        <small>
+            <strong>
+                Showing {{objPage.object_list.count}} results for '{{searchQuery}}'
+            </strong>
+        </small>
+    </p>
+</div>
+
+<div class="container empty">
+    <p>
+        <strong>
+            Suggestions:
+        </strong>
+    </p>
+    <ul>
+        <li>
+            Make sure all words are spelled correctly.
+        </li>
+        <li>
+            Try different keywords.
+        </li>
+        <li>
+            Try more general keywords.
+        </li>
+    </ul>
+</div>
+
+{% else %}
+<!-- Showing X Results -->
+<div class="container my-0">
+    <p>
+        <small>
+            <strong>
+                Showing {{objPage.object_list.count}} results for '{{searchQuery}}'
+            </strong>
+        </small>
+    </p>
+</div>
+
+<!-- Paginator of Results -->
 <div class="container">
     <div class="row justify-content-center">
         
@@ -51,5 +103,16 @@
     </div>
 </div>
 
+<!-- Showing X Results -->
+<div class="container my-3">
+    <p>
+        <small>
+            <strong>
+                Showing {{objPage.object_list.count}} results for '{{searchQuery}}'
+            </strong>
+        </small>
+    </p>
+</div>
+{% endif %}
 
 {%endblock content%}

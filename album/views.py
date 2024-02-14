@@ -5,6 +5,12 @@ from django.core.paginator import (
     EmptyPage,
     PageNotAnInteger,
 )
+from django.contrib.postgres.search import (
+    SearchQuery, 
+    SearchVector, 
+    SearchRank 
+)
+from django.contrib.postgres.aggregates import StringAgg
 
 # Create your views here.
 
@@ -39,3 +45,41 @@ def oneAlbumView(request,slug=None):
         'obj': obj
     }
     return render(request,"album/oneAlbum.html",context=context)
+
+def albumSearchView(request):
+    q = request.GET.get('q')
+    query = SearchQuery(q)
+        
+    vector = SearchVector('title',
+                          'content',
+                          'slug',
+                          'updated',
+                          'publishDate',
+                        #   StringAgg('tags__name',delimiter=' ')
+                          )
+    
+    # Full text search with postgresql
+    object_list = album.objects.annotate(
+        rank=SearchRank(vector,query)).filter(publish=True,rank__gte=0.001).order_by('-rank')
+    
+    # Setting up paginator 
+    defaultPage = 1
+    page = request.GET.get('page', defaultPage)
+    objPerPage = 4
+    paginator = Paginator(object_list, objPerPage)
+
+    try:
+        objPage = paginator.page(page)
+    except PageNotAnInteger:
+        objPage = paginator.page(defaultPage)
+    except EmptyPage:
+        objPage = paginator.page(paginator.num_pages)
+
+
+    context={
+        'object_list': object_list,
+        'searchQuery': q,
+        'objPage': objPage
+    }
+
+    return render(request,"album/search.html",context=context)
