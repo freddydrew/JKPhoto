@@ -30,7 +30,6 @@ def allAlbumsView(request):
         objPage = paginator.page(paginator.num_pages)
 
     context={
-        'objList': objList,
         'objPage': objPage
     }
     return render(request,"album/allAlbums.html",context=context)
@@ -77,8 +76,7 @@ def albumSearchView(request):
 
 
     context={
-        'object_list': object_list,
-        'searchQuery': q,
+        'query': q,
         'objPage': objPage
     }
 

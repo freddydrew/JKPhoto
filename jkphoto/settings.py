@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5',
-    'album',
-    'storages', #for AWS S3
+    'bootstrap5',                   #for styling using bootstrap 5
+    'album',                        #add the album app
+    'subscriber',                   #add subscriber app
+    'storages',                     #for AWS S3
+    'django_recaptcha',             #for recapthca 
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Static File Storage Settings
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+# For Google reCAPTCHA 
+# Docs here: https://pypi.org/project/django-recaptcha/
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_REQUIRED_SCORE = os.environ.get('RECAPTCHA_REQUIRED_SCORE')

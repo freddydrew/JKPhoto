@@ -50,7 +50,7 @@
     <p>
         <small>
             <strong>
-                Showing {{objPage.object_list.count}} results for '{{searchQuery}}'
+                Showing {{objPage.object_list.count}} results for '{{query}}'
             </strong>
         </small>
     </p>
@@ -78,7 +78,7 @@
                 {% if objPage.has_other_pages %}
                 <div class="btn-group" role="group" aria-label="Item pagination">
                     {% if objPage.has_previous %}
-                        <a href="?page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
                     {% endif %}
 
                     {% for pageNum in objPage.paginator.page_range %}
@@ -87,31 +87,20 @@
                                 <span>{{ pageNum }} <span class="sr-only">(current)</span></span>
                             </button>
                         {% else %}
-                            <a href="?page={{ pageNum }}" class="btn btn-outline-secondary">
+                            <a href="?{% if query %}q={{ query }}&{% endif %}page={{ pageNum }}" class="btn btn-outline-secondary">
                                 {{ pageNum }}
                             </a>
                         {% endif %}
                     {% endfor %}
 
                     {% if objPage.has_next %}
-                        <a href="?page={{ objPage.next_page_number }}" class="btn btn-outline-secondary">&raquo;</a>
+                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.next_page_number }}" class="btn btn-outline-secondary">&raquo;</a>
                     {% endif %}
                 </div>
                 {% endif %}
 
                 
     </div>
-</div>
-
-<!-- Showing X Results -->
-<div class="container my-3">
-    <p>
-        <small>
-            <strong>
-                Showing {{objPage.object_list.count}} results for '{{searchQuery}}'
-            </strong>
-        </small>
-    </p>
 </div>
 {% endif %}
 
