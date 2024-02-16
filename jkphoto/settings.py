@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap5',                   #for styling using bootstrap 5
     'album',                        #add the album app
     'subscriber',                   #add subscriber app
+    'letter',                       #add letter app
     'storages',                     #for AWS S3
     'django_recaptcha',             #for recapthca 
 ]
@@ -131,33 +132,42 @@ USE_I18N = True
 
 USE_TZ = True
 
+S3_IN_USE = str(os.environ.get('S3_IN_USE')) == '1'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_URL = '/static/'
-# STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
+if not S3_IN_USE: 
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/4.2/howto/static-files/
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_URL = '/static/'
+    STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+    # Default primary key field type
+    # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS ACCESS INFO FROM ENV FILE
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
-AWS_LOCATION = 'static'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+if S3_IN_USE:
+    # AWS ACCESS INFO FROM ENV FILE
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/"
+    AWS_LOCATION = 'static'
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# Static File Storage Settings
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    # Static File Storage Settings
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # For Google reCAPTCHA 
 # Docs here: https://pypi.org/project/django-recaptcha/
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = os.environ.get('RECAPTCHA_REQUIRED_SCORE')
+
+# For AWS SES 
+# See django-ses documentation: https://pypi.org/project/django-ses/
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_SES_REGION_NAME = 'us-east-1'
+AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'

@@ -1,6 +1,7 @@
 {%extends 'base.html'%}
 {%block content%}
 {% load static %}
+{% load markdownTag %}
 <!-- Load CSS -->
 <link rel="stylesheet" href="{% static 'css/stylesOneAlbum.css' %}">
 
@@ -77,7 +78,7 @@
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-8">  
             <!-- content -->
-            <p>{{obj.content}}</p>
+            <p>{{obj.content|markdown|safe}}</p>
         </div>
     </div>
 </div>
