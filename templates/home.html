@@ -6,6 +6,68 @@
 
 <div class="container">
     <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-8">
+            <h3 >
+                Subscribe! 
+            </h3>
+            <hr>
+ 
+            <form method="POST">
+                <!-- need this token every time in django for POST-->
+                {%csrf_token%}
+
+                {%for field in form%}
+                    <div>
+                        {%if field.errors%}
+                            <input id="{{field.id_for_label}}" name="{{field.name}}" 
+                            type="text" class="form-control is-invalid"
+                            placeholder="{{field.help_text}}">
+                            <div class="invalid-feedback">
+                                {{ field.errors }}
+                            </div>
+                        {%else%}
+                                <input id="{{field.id_for_label}}" name="{{field.name}}" 
+                                type="text" class="form-control"
+                                placeholder="{{field.help_text}}">
+                        {%endif%}
+                    </div>
+                {%endfor%}
+
+                {%if robotForm.recaptcha.errors%}
+                    <div align="center" class="mt-4">
+                        <small>
+                            <strong class="text-danger">
+                                Are you a robot!?  
+                            </strong>
+                            reCAPTCHA has decided you are. Wait and try agian.
+                        </small>
+                    </div>
+                    {{robotForm.recaptcha}}
+                {%else%}
+                        {{robotForm.recaptcha}}
+                {%endif%}
+
+                <button type="submit" class="btn btn-outline-dark btn-lg">
+                    SUBSCRIBE
+                </button> 
+            </form>
+            
+            {%if status == True%}
+                <div class="alert alert-success" role="alert">
+                    Success!
+                </div>
+            {%elif status == False%}
+                <div class="alert alert-danger" role="alert">
+                    You are already subscribed or this email is not valid!
+                </div>
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
         <div class="col-12 col-m-8 col-lg-8">
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 

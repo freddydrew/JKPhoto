@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',homeView,name='home'),
     path('about/',aboutView,name='about'),
-    path('albums/',include('album.urls'))
+    path('albums/',include('album.urls')),
+    path('',include('subscriber.urls'))
 ]

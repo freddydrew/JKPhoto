@@ -19,13 +19,14 @@ def subscribeView(request):
         if form.is_valid() and robotForm.is_valid():
             
             if subscriber.objects.filter(email=form.cleaned_data['email'].lower()).exists():
-                pass
+                context['status'] = False
             else:
                 newSubscriber = subscriber(
                     email=form.cleaned_data['email'].lower()                
                     )
                 newSubscriber.save()
-            return render(request,'subscriber/success.html')
+                context['status'] = True
+            return render(request,'subscriber/subscribe.html',context=context)
     return render(request,'subscriber/subscribe.html',context=context)
 
 def unsubscribeView(request):
@@ -41,7 +42,8 @@ def unsubscribeView(request):
             
             if subscriber.objects.filter(email=form.cleaned_data['email'].lower()).exists():
                 subscriber.objects.filter(email=form.cleaned_data['email'].lower()).delete()
+                context['status'] = True
             else:
-                pass
-            return render(request,'subscriber/successUnsub.html')
+                context['status'] = False
+            return render(request,'subscriber/unsubscribe.html',context=context)
     return render(request,'subscriber/unsubscribe.html',context=context)
