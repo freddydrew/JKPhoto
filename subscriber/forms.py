@@ -4,12 +4,12 @@ from django_recaptcha.widgets import ReCaptchaV3
 
 class subscribeForm(forms.Form):
     email = forms.EmailField(required=True,
-                             help_text="Example: derf@mail.com",
+                             help_text="Email Address",
                              label="Your Email")
     
 class unsubscribeForm(forms.Form):
     email = forms.EmailField(required=True,
-                             help_text="Example: derf@mail.com",
+                             help_text="Email Address",
                              label="Your Email")
     
 class recaptchaV3(forms.Form):

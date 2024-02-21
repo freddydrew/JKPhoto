@@ -1,6 +1,6 @@
 .container{
     flex-grow: 3;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .carousel-inner img{
@@ -8,4 +8,9 @@
     object-position: center;
     height: 50vh;
     overflow: hidden;
+}
+
+#subscribe-card{
+    background-color: lightgrey;
+    border: lightgrey;
 }

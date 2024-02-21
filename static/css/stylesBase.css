@@ -1,4 +1,59 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+/* Navbar styles */
+.navbar-brand{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-brand:hover{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    color: grey;
+}
+
+.navbar input{
+    box-sizing: border-box;
+    border: 3px solid black;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.form-control{
+    outline: none !important;
+}
+
+.navbar button{
+    border: 3px solid black;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar button:hover{
+    border: 3px solid grey;
+    color: grey;
+    font-weight: bold;
+    flex-grow: 0;
+    overflow: visible;
+}
+
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}      
+
+/* Body styles */
 body{
     justify-self: flex-start;
     flex-grow: 3;
@@ -8,6 +63,8 @@ body{
 footer{
     justify-self: self-end;
     margin-top: 10%;
+    background-color: black;
+    color: white;
 }
 
 .footer-links {
@@ -19,4 +76,11 @@ footer{
 
 .footer-links a {
     text-decoration: none;
+    color: white;  
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    color: lightgray;
+    text-decoration: underline;  
 }
