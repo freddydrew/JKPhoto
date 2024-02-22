@@ -1,17 +1,30 @@
 .container{
     flex-grow: 3;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .card{
-    height: 25vh;
-    width: 100%;
+    border-radius: 0%;
+    border: none;
+    height: 100%;
+    flex-grow: 3;
+    text-align: center;
 }
 
 .card img{
     object-fit: cover;
     object-position: center;
-    height: 25%;
-    width: 25%;
     overflow: hidden;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.card:hover{
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    transform: scale(1.025);
+    color: grey;
 }

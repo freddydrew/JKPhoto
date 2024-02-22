@@ -19,7 +19,7 @@ def allAlbumsView(request):
     page = request.GET.get('page', defaultPage)
     objList = album.objects.filter(publish=True)
 
-    objPerPage = 4
+    objPerPage = 8
     paginator = Paginator(objList, objPerPage)
 
     try:
@@ -64,7 +64,7 @@ def albumSearchView(request):
     # Setting up paginator 
     defaultPage = 1
     page = request.GET.get('page', defaultPage)
-    objPerPage = 4
+    objPerPage = 8
     paginator = Paginator(object_list, objPerPage)
 
     try:
