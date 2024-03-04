@@ -15,11 +15,27 @@ from django.contrib.postgres.aggregates import StringAgg
 # Create your views here.
 
 def allAlbumsView(request):
+
+    sortbtn = request.GET.get('sortbtn')
+
+    if sortbtn == 'observations':
+        objList = album.objects.filter(publish=True,postType='observations')
+    elif sortbtn == 'portraits':
+        objList = album.objects.filter(publish=True,postType='portraits')
+    elif sortbtn == 'landscapes':
+        objList = album.objects.filter(publish=True,postType='landscapes')
+    elif sortbtn == 'bmx':
+        objList = album.objects.filter(publish=True,postType='bmx')
+    elif sortbtn == 'family':
+        objList = album.objects.filter(publish=True,postType='family')
+    else:
+        objList = album.objects.filter(publish=True)
+
+
     defaultPage = 1
     page = request.GET.get('page', defaultPage)
-    objList = album.objects.filter(publish=True)
+    objPerPage = 4
 
-    objPerPage = 8
     paginator = Paginator(objList, objPerPage)
 
     try:
@@ -30,7 +46,8 @@ def allAlbumsView(request):
         objPage = paginator.page(paginator.num_pages)
 
     context={
-        'objPage': objPage
+        'objPage': objPage,
+        'sortbtn': sortbtn
     }
     return render(request,"album/allAlbums.html",context=context)
 
@@ -54,7 +71,6 @@ def albumSearchView(request):
                           'slug',
                           'updated',
                           'publishDate',
-                        #   StringAgg('tags__name',delimiter=' ')
                           )
     
     # Full text search with postgresql
@@ -64,7 +80,7 @@ def albumSearchView(request):
     # Setting up paginator 
     defaultPage = 1
     page = request.GET.get('page', defaultPage)
-    objPerPage = 8
+    objPerPage = 4
     paginator = Paginator(object_list, objPerPage)
 
     try:

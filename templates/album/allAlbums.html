@@ -4,9 +4,35 @@
 <!-- Load CSS -->
 <link rel="stylesheet" href="{% static 'css/stylesAllAlbums.css' %}">
 
-
 <div class="container">
     <div class="row justify-content-center g-3">
+
+        <form action="/albums/" method="GET">
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn" 
+            value="all">
+                All
+            </button>
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn" 
+            value="observations">
+                Observations
+            </button>
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            value="portraits">
+                Portraits
+            </button>
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            value="landscapes">
+                Landscapes
+            </button>
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            value="bmx">
+                BMX
+            </button>
+            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            value="family">
+                Family
+            </button>
+        </form>
         
             {% if objPage %}
                 {% for obj in objPage %}
@@ -29,7 +55,7 @@
             {% if objPage.has_other_pages %}
             <div class="btn-group mt-5" role="group" aria-label="Item pagination">
                 {% if objPage.has_previous %}
-                    <a href="?page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
+                    <a href="?{% if sortbtn %}sortbtn={{ sortbtn }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
                 {% endif %}
 
                 {% for pageNum in objPage.paginator.page_range %}
@@ -38,14 +64,14 @@
                             <span>{{ pageNum }} <span class="sr-only">(current)</span></span>
                         </button>
                     {% else %}
-                        <a href="?page={{ pageNum }}" class="btn btn-outline-dark">
+                        <a href="?{% if sortbtn %}sortbtn={{ sortbtn }}&{% endif %}page={{ pageNum }}" class="btn btn-outline-dark">
                             {{ pageNum }}
                         </a>
                     {% endif %}
                 {% endfor %}
 
                 {% if objPage.has_next %}
-                    <a href="?page={{ objPage.next_page_number }}" class="btn btn-outline-dark">&raquo;</a>
+                    <a href="?{% if sortbtn %}sortbtn={{ sortbtn }}&{% endif %}page={{ objPage.next_page_number }}" class="btn btn-outline-dark">&raquo;</a>
                 {% endif %}
             </div>
             {% endif %}

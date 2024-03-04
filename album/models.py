@@ -41,6 +41,12 @@ class album(models.Model):
     publish = models.BooleanField(null=True,blank=True,default=False)
     publishDate = models.DateField(null=True,blank=True,default=None)
     slug = models.SlugField(null=True,editable=False)
+    postType = models.CharField(max_length=75,null=True,default=None,blank=True,
+                            choices=[("observations","observations"),
+                                    ("portraits","portraits"),
+                                    ("landscapes","landscapes"),
+                                    ("bmx","bmx"),
+                                    ("family","family")])
 
     # Getters
     def getTitle(self):

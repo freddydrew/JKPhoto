@@ -8,7 +8,7 @@ class albumImageInline(admin.StackedInline):
 
 class albumAdmin(admin.ModelAdmin):
     # What fields I will see in the multiple objects view
-    list_display = ['title','publish','publishDate']
+    list_display = ['title','postType','publish','publishDate']
     # For the uneditable fields
     readonly_fields = ['timeCreated','updated','slug']
     # The images that will appear beneath each album in the admin
