@@ -55,7 +55,7 @@
             {% if objPage.has_other_pages %}
             <div class="btn-group mt-5" role="group" aria-label="Item pagination">
                 {% if objPage.has_previous %}
-                    <a href="?{% if sortbtn %}sortbtn={{ sortbtn }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
+                    <a href="?{% if sortbtn %}sortbtn={{ sortbtn }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-dark">&laquo;</a>
                 {% endif %}
 
                 {% for pageNum in objPage.paginator.page_range %}

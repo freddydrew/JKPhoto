@@ -59,47 +59,47 @@
 <!-- Paginator of Results -->
 <div class="container">
     <div class="row justify-content-center">
-        
-            {% if objPage %}
-                {% for obj in objPage %}
-                    <div class="col-6 col-lg-3">
-                        <a href="{{obj.getAbsoluteUrl}}">
-                            <div class="card mb-1">
-                                <div class="card-body">
-                                <p class="card-title">{{ obj.title }}</p>
-                                <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
-                                </div>
-                            </div>
-                        </a>
+        {% if objPage %}
+            {% for obj in objPage %}
+            <div class="col-6 col-lg-3">
+                <a href="{{obj.getAbsoluteUrl}}">
+                    <div class="card overflow-hidden mb-1">
+                        <img src="{{obj.albumimage_set.all.0.image.url}}" 
+                        class="mx-auto d-block card-img-top" alt=""/>
+                        <div class="card-body">
+                            <p class="card-title flex-grow-1">
+                                {{ obj.title }}
+                            </p>
+                        </div>
                     </div>
-                {% endfor %}
+                </a>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if objPage.has_other_pages %}
+        <div class="btn-group mt-5" role="group" aria-label="Item pagination">
+            {% if objPage.has_previous %}
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-dark">&laquo;</a>
             {% endif %}
 
-                {% if objPage.has_other_pages %}
-                <div class="btn-group" role="group" aria-label="Item pagination">
-                    {% if objPage.has_previous %}
-                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.previous_page_number }}" class="btn btn-outline-secondary">&laquo;</a>
-                    {% endif %}
-
-                    {% for pageNum in objPage.paginator.page_range %}
-                        {% if objPage.number == pageNum %}
-                            <button class="btn btn-outline-secondary active">
-                                <span>{{ pageNum }} <span class="sr-only">(current)</span></span>
-                            </button>
-                        {% else %}
-                            <a href="?{% if query %}q={{ query }}&{% endif %}page={{ pageNum }}" class="btn btn-outline-secondary">
-                                {{ pageNum }}
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if objPage.has_next %}
-                        <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.next_page_number }}" class="btn btn-outline-secondary">&raquo;</a>
-                    {% endif %}
-                </div>
+            {% for pageNum in objPage.paginator.page_range %}
+                {% if objPage.number == pageNum %}
+                    <button class="btn btn-outline-dark active">
+                        <span>{{ pageNum }} <span class="sr-only">(current)</span></span>
+                    </button>
+                {% else %}
+                    <a href="?{% if query %}q={{ query }}&{% endif %}page={{ pageNum }}" class="btn btn-outline-dark">
+                        {{ pageNum }}
+                    </a>
                 {% endif %}
+            {% endfor %}
 
-                
+            {% if objPage.has_next %}
+                <a href="?{% if query %}q={{ query }}&{% endif %}page={{ objPage.next_page_number }}" class="btn btn-outline-dark">&raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}    
     </div>
 </div>
 {% endif %}
