@@ -11,11 +11,12 @@
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-8">
             <h3 >
-                Subscribe! 
+                Get to the Monthy Newsletter!
             </h3>
             <hr>
             <p>
-                Unsub here bro 
+                At the end of every month, I send out a summary of everything I posted in the last month. 
+                It's short and sweet. If you decide you don't want it anymore, you may unsubscribe at anytime
                 <a href="/unsubscribe/" style="text-decoration: none;">here.</a>
             </p>    
 
@@ -57,17 +58,17 @@
                         {{robotForm.recaptcha}}
                 {%endif%}
 
-                <button type="submit" class="btn btn-outline-dark btn-lg">
+                <button type="submit" class="btn btn-outline-dark btn-lg mt-2">
                     SUBSCRIBE
                 </button> 
             </form>
             
             {%if status == True%}
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success mt-2" role="alert">
                     Success!
                 </div>
             {%elif status == False%}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger mt-2" role="alert">
                     You are already subscribed or this email is not valid!
                 </div>
             {%endif%}
