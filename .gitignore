@@ -14,3 +14,8 @@ pyvenv.cfg
 .dockerignore
 static/album/
 staticfiles/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
