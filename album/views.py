@@ -29,6 +29,7 @@ def allAlbumsView(request):
         objList = album.objects.filter(publish=True,postType='family')
     else:
         objList = album.objects.filter(publish=True).order_by('-publishDate')
+        sortbtn = 'all'
 
     objList = objList.order_by('-publishDate')
 

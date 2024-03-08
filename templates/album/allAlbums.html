@@ -8,27 +8,27 @@
     <div class="row justify-content-center g-3">
 
         <form action="/albums/" method="GET">
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn" 
+            <button type="submit" name="sortbtn" id="all" class="btn btn-outline-dark sort-btn" 
             value="all">
                 All
             </button>
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn" 
+            <button type="submit" name="sortbtn" id="observations" class="btn btn-outline-dark sort-btn" 
             value="observations">
                 Observations
             </button>
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            <button type="submit" name="sortbtn" id="portraits" class="btn btn-outline-dark sort-btn"
             value="portraits">
                 Portraits
             </button>
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            <button type="submit" name="sortbtn" id="landscapes" class="btn btn-outline-dark sort-btn"
             value="landscapes">
                 Landscapes
             </button>
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            <button type="submit" name="sortbtn" id="bmx" class="btn btn-outline-dark sort-btn"
             value="bmx">
                 BMX
             </button>
-            <button type="submit" name="sortbtn" class="btn btn-outline-dark sort-btn"
+            <button type="submit" name="sortbtn" id="family" class="btn btn-outline-dark sort-btn"
             value="family">
                 Family
             </button>
@@ -78,5 +78,11 @@
     </div>
 </div>
 
+<script src="{% static 'javascript/allAlbumFilters.js' %}" type="text/javascript"></script>
+
+<script>
+    var activeSort = "{{sortbtn}}";
+    setActiveSort(activeSort);
+</script>
 
 {%endblock content%}
