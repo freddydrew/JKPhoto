@@ -1,10 +1,9 @@
-.container {
+.articleTitle {
     margin-top: 5%;
 }
 
 @media only screen and (min-width: 100px){
     .carousel-inner img{
-        border-radius: 5px;
         object-fit: cover;
         object-position: center;
         height: 35vh;
@@ -15,7 +14,6 @@
 
 @media only screen and (min-width: 600px){
     .carousel-inner img{
-        border-radius: 5px;
         object-fit: cover;
         object-position: center;
         height: 60vh;
@@ -25,9 +23,8 @@
 }
 
 
-.one-image img{
-    border-radius: 5px;
-    width: 100%;
+.oneImage img{
+    max-width: 100%;
 }
 
 

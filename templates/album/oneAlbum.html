@@ -6,18 +6,11 @@
 <link rel="stylesheet" href="{% static 'css/stylesOneAlbum.css' %}">
 
 <!-- Displaying title, publish date -->
-<div class="container">
+<div class="container articleTitle">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-8">
             <!-- Display Title -->
             <h1>{{obj.title}}</h1>
-  
-            <!-- Publish Date -->
-            <p class="articleTitle text-muted">
-                <strong>
-                    {{obj.publishDate|date:"F j, Y"}}
-                </strong>
-            </p>
         </div>
     </div>
 </div>
@@ -29,7 +22,7 @@
         <div class="col-12 col-lg-8">
             <!-- Load image, must be URL, Not sure why -->
             <img src="{{obj.albumimage_set.all.0.image.url}}" 
-            alt="{{obj.title}} image" class="">
+            alt="{{obj.title}} image">
         </div>
     </div>
 </div>
@@ -37,7 +30,7 @@
 
 <!-- If there are multiple images in an object, make a carosel of them -->
 {%if obj.albumimage_set.count > 1%}
-<div class="container">
+<div class="container mt-2">
     <div class="row justify-content-center align-items-center">
         <div class="col-12">
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -66,7 +59,6 @@
                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
                  <span class="visually-hidden">Next</span>
                </button>
-
              </div>
         </div>
     </div>
@@ -74,11 +66,18 @@
 {%endif%}
 
 <!-- Displaying content a.k.a. caption for album -->
-<div class="container">
+<div class="container mt-2">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-lg-8">  
             <!-- content -->
             <p>{{obj.content|markdown|safe}}</p>
+
+            <!-- Publish Date -->
+            <small class="text-muted">
+                <strong>
+                    Published on {{obj.publishDate|date:"F j, Y"}}
+                </strong>
+            </small>
         </div>
     </div>
 </div>
