@@ -84,18 +84,18 @@
                         {%if forloop.counter0 == 0%}
                             <!-- Active item -->
                             <div class="carousel-item active" data-bs-interval="3000">
-                                <!-- <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;"> -->
+                                <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;">
                                     <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
                                     
-                                <!-- </a> -->
+                                </a>
                             </div>
 
                         {%else%}
                             <!-- Item -->
                             <div class="carousel-item" data-bs-interval="3000">
-                                <!-- <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;"> -->
+                                <a href="{{obj.getAbsoluteUrl}}" style="text-decoration: none;">
                                     <img src="{{obj.albumimage_set.all.0.image.url}}" class="mx-auto d-block" alt=""/>
-                                <!-- </a> -->
+                                </a>
                             </div>
                         {%endif%}
                     {%endfor%}      
