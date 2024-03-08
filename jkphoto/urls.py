@@ -20,11 +20,23 @@ from .views import (
     homeView,
     aboutView
 )
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import staticViewSitemap
+from album.sitemaps import albumSiteMap
+from subscriber.sitemaps import subscriberSiteMap
+
+sitemaps = {
+    'static': staticViewSitemap,
+    'albums': albumSiteMap,
+    'subscribe': subscriberSiteMap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',homeView,name='home'),
     path('about/',aboutView,name='about'),
     path('albums/',include('album.urls')),
-    path('',include('subscriber.urls'))
+    path('',include('subscriber.urls')),
+    path("sitemap.xml",sitemap,{"sitemaps": sitemaps},
+    name="django.contrib.sitemaps.views.sitemap")
 ]
