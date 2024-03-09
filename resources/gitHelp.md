@@ -8,7 +8,7 @@
 
 `git del filename`
 
-- Use this ti remove something from tracking
+- Use this to remove something from tracking
 
 `git commit`
 
