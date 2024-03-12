@@ -35,3 +35,22 @@ def sendNewsLetter(object):
         )
         email.attach_alternative(html_message,'text/html')
         email.send()
+
+def sendTestNewsLetter(object):
+
+    # Send test email to myself
+    from_email = 'justinkoebelephoto@gmail.com'
+    context = {
+        'object': object
+        }
+    html_message = render_to_string('letter/letter.html', context=context)
+    plain_message = strip_tags(html_message)
+        
+    email = EmailMultiAlternatives(
+        subject = object.title,
+        from_email=from_email,
+        to = [from_email],
+        body=plain_message,
+    )
+    email.attach_alternative(html_message,'text/html')
+    email.send()
