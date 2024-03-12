@@ -1,4 +1,107 @@
-{% load markdownTag %}
-<p>
-    {{object.message|markdown|safe}}
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Load Static -->
+    {% load static %}
+
+    <!-- Load markdown tag -->
+    {% load markdownTag %}
+
+    <style>
+        .header-hr hr{
+            border: none;
+            color: lightgray;
+            background-color: lightgray;
+            height: 2px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header-child{
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .message{
+            margin-top: 20px;
+            margin-bottom: 25px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .footer{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            margin-top: 30px;
+            border-radius: 3px;
+            text-align: center;
+            width: 100%;
+            background-color: darkgray;
+        }
+
+        .footer a{
+            color: white;
+        }
+
+        .footer a:hover{
+            color: lightgray
+        }
+
+        img{
+            margin-left: 15%;
+            width: 70%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header-hr">
+        <hr>
+    </div>
+    <div class="header">
+        <div class="header-child">
+            <h1>Justin Koebele Photography</h1>
+        </div>
+    </div>
+    <div class="header-hr">
+        <hr>
+    </div>
+
+    <p class="message">
+        {{object.message|markdown|safe}}
+    </p>
+    
+    <p>
+        If you would like to reach out, please email  
+        <strong>justinkoebelephoto@gmail.com</strong> 
+        seperately. Please <strong>do not</strong> 
+        reply to this email.
+    </p>
+    
+    <div class="footer">
+        <!-- <img src="{% static 'images/NavbarLogo.png' %}" 
+        width="50" height="50" alt="navbar-logo"> -->
+        <p>
+            You can unsubscribe anytime  
+            <a href="http://www.justinkoebelephoto.com/unsubscribe/">here.</a>
+        </p>
+        <p>
+            Copyright DERFWERD © 2024, All Rights Reserved    
+        </p>
+    </div>
+
+</body>
+</html>
