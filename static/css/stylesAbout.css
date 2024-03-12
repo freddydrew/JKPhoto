@@ -3,3 +3,6 @@
     height: auto;
     flex-grow: 3;
 }
+.container img{
+    width: 100%;
+}
