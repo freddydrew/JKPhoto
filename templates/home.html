@@ -38,25 +38,27 @@
                             {%endif%}
                         </div>
                     {%endfor%}
-    
+
                     <button type="submit" class="btn btn-outline-dark btn-lg mx-2 mt-2 mb-5 subscribe">
                         SUBSCRIBE
                     </button> 
+
+                    {%if robotForm.recaptcha.errors%}
+                        <div align="center" class="mb-4">
+                            <small>
+                                <strong class="text-danger">
+                                    Are you a robot!?  
+                                </strong>
+                                reCAPTCHA has decided you are. Wait and try agian.
+                            </small>
+                        </div>
+                        {{robotForm.recaptcha}}
+                    {%else%}
+                        {{robotForm.recaptcha}}
+                    {%endif%}
+
                 </form>
     
-                {%if robotForm.recaptcha.errors%}
-                    <div align="center" class="mb-4">
-                        <small>
-                            <strong class="text-danger">
-                                Are you a robot!?  
-                            </strong>
-                            reCAPTCHA has decided you are. Wait and try agian.
-                        </small>
-                    </div>
-                    {{robotForm.recaptcha}}
-                {%else%}
-                    {{robotForm.recaptcha}}
-                {%endif%}
                 
                 {%if status == True%}
                     <div class="alert alert-success" role="alert">

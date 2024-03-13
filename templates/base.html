@@ -20,13 +20,18 @@
     <link rel="stylesheet" href="{% static 'css/stylesBase.css' %}">
 
     <!-- Load favicon -->
-    <!-- <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" > -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
 
     <!-- Preview Info -->
     <meta property="og:title" content="Justin Koebele Photo">
     <meta name="description" content="A collection of photos.">
     <meta property="og:description" content="A collection of photos.">
     <!-- <meta property="og:image" content="{% static 'images/PagePreview.png'%}"> -->
+
+
+    <!-- Mobile home screen icons -->
+    <link rel="apple-touch-icon" href="{% static 'images/favicon.png' %}">
+    <link rel="icon" href="{% static 'images/favicon.png' %}">
 </head>
 
 <body class="d-flex flex-column min-vh-100 h-100">
@@ -100,6 +105,9 @@
             </li>
             <li class="footer-item py-1">
               <a href="https://www.buymeacoffee.com/justinkoebele">"Buy Me A Coffee"</a>
+            </li>
+            <li class="footer-item py-1">
+              <a href="https://github.com/freddydrew/JKPhoto">"GitHub"</a>
             </li>
             <hr>
             <li class="footer-item">
