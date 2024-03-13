@@ -3,6 +3,10 @@
     margin-top: 5%;
 }
 
+.navbar{
+    border-bottom: 2px solid rgb(108, 123, 99);
+}
+
 .carousel-inner img{
     object-fit: cover;
     object-position: center;
