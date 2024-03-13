@@ -8,7 +8,7 @@
 
 `git del filename`
 
-- Use this ti remove something from tracking
+- Use this to remove something from tracking
 
 `git commit`
 
@@ -22,3 +22,10 @@
 
 - This will pull down all changes done to the GitHub repo and apply them to your locally branch. Do this before working on anything. 
 
+`git checkout -b dev`
+
+- This will create a separate dev branch locally
+
+`git push origin dev`
+
+- This will push changes to the Github repo from the dev branch. Then Freddy can merge with the main branch.
