@@ -8,9 +8,9 @@ from subscriber.forms import (
 
 def homeView(request):
 
-    # These are the photo album for the carousel, it gets 3 of the
+    # These are the photo album for the carousel, it gets 5 of the
     # most recently published and hands them to the home page
-    sliderObjList = album.objects.filter(publish=True).order_by('-publishDate')[0:3]
+    sliderObjList = album.objects.filter(publish=True).order_by('-publishDate')[0:5]
     robotForm = recaptchaV3(request.POST or None)
     form = subscribeForm(request.POST or None)
     context = {
