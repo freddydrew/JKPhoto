@@ -1,7 +1,8 @@
 # Justin Koebele Photo
 
 ### About
-  
+I built [Justin Koebele Photo](http://www.justinkoebelephoto.com/) for my buddy Justin. I had already made [Fredducation](https://www.fredducation.co/) and knew where to begin with creating a website. I learned a ton from making my language learning blog and took those lessons to this project. Justin wanted a place to show off his photography without using social media apps, which is something that resonated with me. This website is something we are proud of and hope you enjoy.  
+
 ### How was the site built?
 For those that are curious as to how I made it or how one can make a 
 similar site using [Django](https://www.djangoproject.com/), we've made the code available to all. **Below is a nonexhaustive list of tools used to build the site.** 
